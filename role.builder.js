@@ -8,7 +8,7 @@ var roleBuilder = {
         if (creep.memory.task == "harvest" && _.sum(creep.carry) != creep.carryCapacity) {
             var sources = creep.room.find(FIND_SOURCES);
             if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+                creep.moveTo(sources[0], {visualizePathStyle: {stroke: "#ff7711"}});
             }
             return;
         }
@@ -20,7 +20,7 @@ var roleBuilder = {
         if (target != null) {
             creep.memory.task = "build";
             if (creep.build(target) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
+                creep.moveTo(target, {visualizePathStyle: {stroke: "#ffffff"}});
             }
             return;
         }
@@ -30,7 +30,7 @@ var roleBuilder = {
             creep.memory.task = "repair";
             var target = _.sortBy(targets, ["hits"])[0];
             if (creep.repair(target) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
+                creep.moveTo(target, {visualizePathStyle: {stroke: "#ffffff"}});
             }
             return;
         }
