@@ -3,7 +3,7 @@ function load(creep) {
         return false;
     }
 
-    var target = creep.room.findClosestByPath(FIND_MY_STRUCTURES, {
+    var target = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
         filter: (structure) => (structure.structureType == STRUCTURE_CONTAINER || structure.structureType == STRUCTURE_STORAGE) &&
             (structure.store.energy > 50)
     });
