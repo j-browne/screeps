@@ -43,7 +43,7 @@ var roleTransporter = {
             default:
             case "load":
                 creep.memory.state = "load";
-                if (harvest(creep)) {
+                if (load(creep)) {
                     break;
                 }
             case "transfer":
