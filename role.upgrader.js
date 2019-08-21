@@ -26,6 +26,10 @@ function upgrade(creep) {
 var roleUpgrader = {
     /** @param {Creep} creep **/
     run: function(creep) {
+        if (creep.carry.energy == 0) {
+            creep.memory.state = "load";
+        }
+
         switch (creep.memory.state) {
             default:
                 creep.memory.state = "load";
