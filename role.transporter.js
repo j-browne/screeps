@@ -4,7 +4,8 @@ function load(creep) {
     }
 
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-        filter: (structure) => (structure.structureType == STRUCTURE_CONTAINER || structure.structureType == STRUCTURE_STORAGE)
+        filter: (structure) => (structure.structureType == STRUCTURE_CONTAINER || structure.structureType == STRUCTURE_STORAGE) &&
+            (structure.store.energy > 0)
     });
     if (target != null) {
         if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
