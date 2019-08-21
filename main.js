@@ -20,7 +20,7 @@ var numCreeps = {
     "harvester": 2,
     "builder": 2,
     "upgrader": 1,
-    "transporter": 2
+    "transporter": 1
 };
 
 module.exports.loop = function () {
@@ -33,7 +33,7 @@ module.exports.loop = function () {
 
     for (var role in roles) {
         var numMin = (role in numCreeps) ? (numCreeps[role]) : (numCreeps["default"]);
-        var num = _.filter(Game.creeps, (creep) => creep.memory.role == role).length;
+        var num = _.filter(Game.creeps, (creep) => creep.memory.role == role && creep.ticksToLive > 200).length;
         if (num < numMin) {
             var newNames = _.filter(names, (n) => !(n in Game.creeps));
             var newName = (newNames.length > 0) ? (_.sample(newNames)) : ("Creep" + Game.time);
