@@ -39,6 +39,10 @@ function transfer(creep) {
 var roleTransporter = {
     /** @param {Creep} creep **/
     run: function(creep) {
+        if (creep.carry.energy == 0) {
+            creep.memory.state = "load";
+        }
+
         switch (creep.memory.state) {
             default:
             case "load":
