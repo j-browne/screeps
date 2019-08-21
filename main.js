@@ -18,10 +18,12 @@ var equips = {
 var numCreeps = {
     "default": 0,
     "harvester": 2,
-    "builder": 2,
+    "builder": 1,
     "upgrader": 1,
     "transporter": 1
 };
+
+var pauseSpawning = false;
 
 module.exports.loop = function () {
     for (var name in Memory.creeps) {
@@ -34,7 +36,7 @@ module.exports.loop = function () {
     for (var role in roles) {
         var numMin = (role in numCreeps) ? (numCreeps[role]) : (numCreeps["default"]);
         var num = _.filter(Game.creeps, (creep) => creep.memory.role == role && creep.ticksToLive > 200).length;
-        if (num < numMin) {
+        if (!pauseSpawning && num < numMin) {
             var newNames = _.filter(names, (n) => !(n in Game.creeps));
             var newName = (newNames.length > 0) ? (_.sample(newNames)) : ("Creep" + Game.time);
 
