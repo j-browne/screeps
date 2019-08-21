@@ -48,7 +48,7 @@ var roleBuilder = {
     /** @param {Creep} creep **/
     run: function(creep) {
         if (creep.carry.energy == 0) {
-            creep.memory.task = "load";
+            creep.memory.state = "load";
         }
 
         switch (creep.memory.state) {
@@ -69,7 +69,7 @@ var roleBuilder = {
                     break;
                 }
             case "wait":
-                creep.memory.task = "wait";
+                creep.memory.state = "wait";
                 break;
         }
     }

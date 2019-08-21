@@ -32,7 +32,7 @@ var roleHarvester = {
     /** @param {Creep} creep **/
     run: function(creep) {
         if (creep.carry.energy == 0) {
-            creep.memory.task = "harvest";
+            creep.memory.state = "harvest";
         }
 
         switch (creep.memory.state) {
