@@ -31,7 +31,7 @@ function build(creep) {
 
 function repair(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-        filter: (structure) => structure.hits != structure.hitsMax
+        filter: (structure) => structure.hits < structure.hitsMax / 2
     });
 
     if (target != null) {
