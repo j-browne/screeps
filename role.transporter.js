@@ -13,7 +13,6 @@ function load(creep) {
         }
         return true;
     } else {
-        creep.memory.state = "transfer";
         return false;
     }
 }
@@ -31,7 +30,6 @@ function transfer(creep) {
         }
         return true;
     } else {
-        creep.memory.state = "load";
         return false;
     }
 }
