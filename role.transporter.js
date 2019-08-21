@@ -22,7 +22,7 @@ function load(creep) {
 function transfer(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
         filter: (structure) => (structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_EXTENSION) &&
-            (_.sum(structure.store) < structure.storeCapacity)
+            (_.sum(structure.energy) < structure.energyCapacity)
     });
 
     if (target != null) {
