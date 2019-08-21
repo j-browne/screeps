@@ -3,7 +3,7 @@ function load(creep) {
         return false;
     }
 
-    var target = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+    var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
         filter: (structure) => (structure.structureType == STRUCTURE_CONTAINER || structure.structureType == STRUCTURE_STORAGE) &&
             (structure.store.energy > 50)
     });
@@ -20,7 +20,7 @@ function load(creep) {
 
 
 function transfer(creep) {
-    var target = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+    var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
         filter: (structure) => (structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_EXTENSION) &&
             (_.sum(structure.store) < structure.storeCapacity)
     });
