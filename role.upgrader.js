@@ -21,6 +21,7 @@ function upgrade(creep) {
     if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
         creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: "#ffffff"}});
     }
+    return true;
 }
 
 var roleUpgrader = {
@@ -32,13 +33,16 @@ var roleUpgrader = {
 
         switch (creep.memory.state) {
             default:
-                creep.memory.state = "load";
             case "load":
+                creep.memory.state = "load";
                 if (load(creep)) {
                     break;
                 }
             case "upgrade":
-                break;
+                creep.memory.state = "upgrade";
+                if (upgrade(creep)) {
+                    break;
+                }
         }
     }
 };
