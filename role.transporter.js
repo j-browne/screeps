@@ -13,66 +13,46 @@ function load(creep) {
         }
         return true;
     } else {
+        creep.memory.state = "transfer";
         return false;
     }
 }
 
-function build(creep) {
-    var target = creep.pos.findClosestByPath(FIND_MY_CONSTRUCTION_SITES);
-    if (target != null) {
-        if (creep.build(target) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(target, {visualizePathStyle: {stroke: "#ffffff"}});
-        }
-        return true;
-    } else {
-        return false;
-    }
-}
 
-function repair(creep) {
+function transfer(creep) {
     var target = creep.room.findClosestByPath(FIND_MY_STRUCTURES, {
-        filter: (structure) => structure.hits != structure.hitsMax
+        filter: (structure) => (structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_EXTENSION) &&
+            (_.sum(structure.store) < structure.storeCapacity)
     });
 
     if (target != null) {
-        if (creep.repair(target) == ERR_NOT_IN_RANGE) {
+        if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target, {visualizePathStyle: {stroke: "#ffffff"}});
         }
         return true;
     } else {
+        creep.memory.state = "load";
         return false;
     }
 }
 
-var roleBuilder = {
+var roleTransporter = {
     /** @param {Creep} creep **/
     run: function(creep) {
-        if (creep.carry.energy == 0) {
-            creep.memory.task = "load";
-        }
-
         switch (creep.memory.state) {
             default:
             case "load":
                 creep.memory.state = "load";
-                if (load(creep)) {
+                if (harvest(creep)) {
                     break;
                 }
-            case "repair":
-                creep.memory.state = "repair";
-                if (repair(creep)) {
+            case "transfer":
+                creep.memory.state = "transfer";
+                if (transfer(creep)) {
                     break;
                 }
-            case "build":
-                creep.memory.state = "build";
-                if (build(creep)) {
-                    break;
-                }
-            case "wait":
-                creep.memory.task = "wait";
-                break;
         }
     }
 };
 
-module.exports = roleBuilder;
+module.exports = roleTransporter;

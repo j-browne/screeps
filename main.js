@@ -2,23 +2,25 @@ var names = require("names");
 
 var roles = {
     "harvester": require("role.harvester"),
-    "upgrader": require("role.upgrader"),
-    "builder": require("role.builder")
+    "transporter": require("role.transporter"),
+    "builder": require("role.builder"),
+    "upgrader": require("role.upgrader")
 };
 
 var equips = {
     "default": [WORK, CARRY, MOVE],
-    "harvester": [WORK, CARRY, CARRY, MOVE, MOVE],
-    "upgrader": [WORK, CARRY, CARRY, MOVE, MOVE],
-    "builder": [WORK, CARRY, CARRY, MOVE, MOVE],
-    "transporter": [CARRY, CARRY, CARRY, MOVE, MOVE, MOVE]
+    "harvester": [WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE],
+    "upgrader": [WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE],
+    "builder": [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE],
+    "transporter": [CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE]
 };
 
 var numCreeps = {
     "default": 0,
     "harvester": 1,
-    "builder": 3,
-    "upgrader": 0
+    "builder": 2,
+    "upgrader": 2,
+    "transporter": 1
 };
 
 module.exports.loop = function () {
