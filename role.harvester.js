@@ -1,5 +1,5 @@
 function harvest(creep) {
-    if (_.sum(creep.carry) < creep.carryCapacity) {
+    if (creep.carryCapacity == 0 || _.sum(creep.carry) < creep.carryCapacity) {
         var source = creep.pos.findClosestByPath(FIND_SOURCES, {filter: (source) => source.energy > 0});
         if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
             creep.moveTo(source, {visualizePathStyle: {stroke: "#ffaa00"}});
