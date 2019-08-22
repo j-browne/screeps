@@ -4,7 +4,7 @@ var roles = {
     "harvester": require("role.harvester"),
     "transporter": require("role.transporter"),
     "builder": require("role.builder"),
-    "upgrader": require("role.upgrader")
+    "upgrader": require("role.upgrader"),
     "attacker": require("role.attacker")
 };
 
