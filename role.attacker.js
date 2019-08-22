@@ -7,6 +7,13 @@ function attack(creep) {
 }
 
 function fortify(creep) {
+    var structures = creep.pos.lookFor(LOOK_STRUCTURES);
+    for (var s in structures) {
+        if (s.structureType == STRUCTURE_RAMPART) {
+            return;
+        }
+    }
+
     var rampart = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {filter: (s) =>
         s.structureType == STRUCTURE_RAMPART &&
         s.pos.lookFor(LOOK_CREEPS).length == 0
