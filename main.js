@@ -50,15 +50,6 @@ module.exports.loop = function () {
         }
     }
 
-    if (Game.spawns["Spawn1"].spawning) { 
-        var spawningCreep = Game.creeps[Game.spawns["Spawn1"].spawning.name];
-        Game.spawns["Spawn1"].room.visual.text(
-            spawningCreep.memory.role,
-            Game.spawns["Spawn1"].pos.x + 1,
-            Game.spawns["Spawn1"].pos.y,
-            {align: "left", opacity: 0.8});
-    }
-
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
         creep.room.visual.text(`${creep.name} (${creep.memory.role})`, creep.pos, {font: "10px", opacity: 0.7, stroke: "black", strokeWidth: 0.07});
