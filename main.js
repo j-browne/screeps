@@ -11,14 +11,14 @@ var equips = {
     "default": [WORK, CARRY, MOVE],
     "harvester": [WORK, WORK, WORK, WORK, WORK, MOVE],
     "upgrader": [WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE],
-    "builder": [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE],
+    "builder": [WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE],
     "transporter": [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE]
 };
 
 var numCreeps = {
     "default": 0,
     "harvester": 2,
-    "builder": 1,
+    "builder": 3,
     "upgrader": 3,
     "transporter": 1
 };
