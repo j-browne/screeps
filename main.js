@@ -18,8 +18,8 @@ var equips = {
 var numCreeps = {
     "default": 0,
     "harvester": 2,
-    "builder": 2,
-    "upgrader": 1,
+    "builder": 1,
+    "upgrader": 3,
     "transporter": 1
 };
 
