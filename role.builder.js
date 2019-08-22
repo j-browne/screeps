@@ -29,6 +29,21 @@ function build(creep) {
     }
 }
 
+function repairCritical(creep) {
+    var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+        filter: (structure) => structure.structureType == STRUCTURE_RAMPART
+    });
+
+    if (target != null) {
+        if (creep.repair(target) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(target, {visualizePathStyle: {stroke: "#ffffff"}});
+        }
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function repair(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
         filter: (structure) => structure.hits < structure.hitsMax
@@ -56,6 +71,11 @@ var roleBuilder = {
             case "load":
                 creep.memory.state = "load";
                 if (load(creep)) {
+                    break;
+                }
+            case "repairCritical":
+                creep.memory.state = "repairCritical";
+                if (repairCritical(creep)) {
                     break;
                 }
             case "build":
