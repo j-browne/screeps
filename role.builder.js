@@ -31,7 +31,7 @@ function build(creep) {
 
 function repair(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-        filter: (structure) => structure.hits < structure.hitsMax / 2
+        filter: (structure) => structure.hits < structure.hitsMax
     });
 
     if (target != null) {
@@ -58,14 +58,14 @@ var roleBuilder = {
                 if (load(creep)) {
                     break;
                 }
-            case "repair":
-                creep.memory.state = "repair";
-                if (repair(creep)) {
-                    break;
-                }
             case "build":
                 creep.memory.state = "build";
                 if (build(creep)) {
+                    break;
+                }
+            case "repair":
+                creep.memory.state = "repair";
+                if (repair(creep)) {
                     break;
                 }
             case "wait":
