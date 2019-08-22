@@ -5,6 +5,7 @@ var roles = {
     "transporter": require("role.transporter"),
     "builder": require("role.builder"),
     "upgrader": require("role.upgrader")
+    "attacker": require("role.attacker")
 };
 
 var equips = {
@@ -12,7 +13,8 @@ var equips = {
     "harvester": [WORK, WORK, WORK, WORK, WORK, MOVE],
     "upgrader": [WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE],
     "builder": [WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE],
-    "transporter": [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE]
+    "transporter": [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
+    "attacker": [ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE]
 };
 
 var numCreeps = {
@@ -20,7 +22,8 @@ var numCreeps = {
     "harvester": 2,
     "builder": 3,
     "upgrader": 3,
-    "transporter": 1
+    "transporter": 1,
+    "attacker": 1
 };
 
 var pauseSpawning = false;
