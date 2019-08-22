@@ -9,7 +9,7 @@ function attack(creep) {
 function fortify(creep) {
     var structures = creep.pos.lookFor(LOOK_STRUCTURES);
     for (var s in structures) {
-        if (s.structureType == STRUCTURE_RAMPART) {
+        if (structures[s].structureType == STRUCTURE_RAMPART) {
             return;
         }
     }
