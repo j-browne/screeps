@@ -31,7 +31,7 @@ function build(creep) {
 
 function repairCritical(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-        filter: (structure) => structure.structureType == STRUCTURE_RAMPART
+        filter: (structure) => structure.structureType == STRUCTURE_RAMPART && structure.hits < 1000
     });
 
     if (target != null) {
