@@ -4,10 +4,24 @@ function harvest(creep) {
         if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
             creep.moveTo(source, {visualizePathStyle: {stroke: "#ffaa00"}});
         }
+        moveIfContainerFull(creep);
         return true;
     } else {
         creep.memory.state = "transfer";
         return false;
+    }
+}
+
+function moveIfContainerFull(creep) {
+    var structures = creep.pos.lookFor(LOOK_STRUCTURES);
+    for (i in structures) {
+        var s = structures[s];
+        if (s.structureType == STRUCTURE_CONTAINER && s.store == s.storeCapacity) {
+            var newS = creep.pos.findClosestByPath(FIND_STRUCTURES, {filter: s.structureType == STRUCTURE_CONTAINER && s.store != s.storeCapacity});
+            if (newS != null) {
+                creep.moveTo(newS);
+            }
+        }
     }
 }
 
