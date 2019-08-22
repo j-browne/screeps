@@ -74,21 +74,20 @@ var roleBuilder = {
                     break;
                 }
             case "repairCritical":
+            case "build":
+            case "repair":
                 creep.memory.state = "repairCritical";
                 if (repairCritical(creep)) {
                     break;
                 }
-            case "build":
                 creep.memory.state = "build";
                 if (build(creep)) {
                     break;
                 }
-            case "repair":
                 creep.memory.state = "repair";
                 if (repair(creep)) {
                     break;
                 }
-            case "wait":
                 creep.memory.state = "wait";
                 break;
         }
