@@ -46,6 +46,21 @@ function repairCritical(creep) {
 
 function repair(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+        filter: (structure) => structure.structureType != STRUCTURE_WALL && structure.hits < structure.hitsMax
+    });
+
+    if (target != null) {
+        if (creep.repair(target) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(target, {visualizePathStyle: {stroke: "#ffffff"}});
+        }
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function repairWall(creep) {
+    var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
         filter: (structure) => structure.hits < structure.hitsMax
     });
 
@@ -86,6 +101,10 @@ var roleBuilder = {
                 }
                 creep.memory.state = "repair";
                 if (repair(creep)) {
+                    break;
+                }
+                creep.memory.state = "repairWall";
+                if (repairWall(creep)) {
                     break;
                 }
                 creep.memory.state = "wait";
