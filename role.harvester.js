@@ -15,7 +15,7 @@ function harvest(creep) {
 function moveIfContainerFull(creep) {
     var structures = creep.pos.lookFor(LOOK_STRUCTURES);
     for (i in structures) {
-        var s = structures[s];
+        var s = structures[i];
         if (s.structureType == STRUCTURE_CONTAINER && s.store == s.storeCapacity) {
             var newS = creep.pos.findClosestByPath(FIND_STRUCTURES, {filter: s.structureType == STRUCTURE_CONTAINER && s.store != s.storeCapacity});
             if (newS != null) {
