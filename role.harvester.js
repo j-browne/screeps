@@ -16,8 +16,8 @@ function moveIfContainerFull(creep) {
     var structures = creep.pos.lookFor(LOOK_STRUCTURES);
     for (i in structures) {
         var s = structures[i];
-        if (s.structureType == STRUCTURE_CONTAINER && s.store == s.storeCapacity) {
-            var newS = creep.pos.findClosestByPath(FIND_STRUCTURES, {filter: s.structureType == STRUCTURE_CONTAINER && s.store != s.storeCapacity});
+        if (s.structureType == STRUCTURE_CONTAINER && _.sum(s.store) == s.storeCapacity) {
+            var newS = creep.pos.findClosestByPath(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER && _.sum(s.store) != s.storeCapacity});
             if (newS != null) {
                 creep.moveTo(newS);
             }
