@@ -16,7 +16,7 @@ var spawnController = {
 
         var numRolesCurr = {};
         for (role in config.roles) {
-            numRolesCurr[role] = room.find(FIND_MY_CREEPS, {filter: (c) => {(c.memory.role == role) && (c.ticksToLive > 200)} }).length;
+            numRolesCurr[role] = room.find(FIND_MY_CREEPS, {filter: (c) => (c.memory.role == role) && (c.ticksToLive > 200)}).length;
         }
 
         for (role in config.spawnRoles[room.name]) {
