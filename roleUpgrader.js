@@ -6,7 +6,15 @@ function load(creep) {
     var target = creep.room.storage;
     if (target != null) {
         if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(target, {visualizePathStyle: {stroke: "#ff7711"}});
+            creep.moveTo(target, {
+                visualizePathStyle: {stroke: "#ff7711"},
+                costCallback: function(roomName, costMatrix) {
+                    if(roomName == 'W43N47') {
+                        // Reserve a spot for transporters
+                        costMatrix.set(25, 44, 255);
+                    }
+                }
+            });
         }
         return true;
     } else {

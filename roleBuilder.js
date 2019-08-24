@@ -6,7 +6,15 @@ function load(creep) {
     var target = creep.room.storage;
     if (target != null) {
         if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(target, {visualizePathStyle: {stroke: "#ff7711"}});
+            creep.moveTo(target, {
+                visualizePathStyle: {stroke: "#ff7711"},
+                costCallback: function(roomName, costMatrix) {
+                    if(roomName == 'W43N47') {
+                        // Reserve a spot for transporters
+                        costMatrix.set(25, 44, 255);
+                    }
+                }
+            });
         }
         return true;
     } else {
@@ -28,7 +36,8 @@ function build(creep) {
 
 function repairCritical(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-        filter: (structure) => structure.structureType == STRUCTURE_RAMPART && structure.hits < 1000
+        filter: (s) => (s.structureType == STRUCTURE_RAMPART && s.hits < 1000) ||
+        (s.structureType != STRUCTURE_WALL && s.structureType != STRUCTURE_RAMPART && s.hits < s.hitsMax / 100)
     });
 
     if (target != null) {
