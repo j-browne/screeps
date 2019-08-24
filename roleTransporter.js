@@ -6,7 +6,7 @@ function load(creep) {
     var target = null;
     var targets = creep.room.find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
     for (targetNum in targets) {
-        if (target == null || targets[targetNum].store["energy" > target.store["energy"]]) {
+        if (target == null || targets[targetNum].store["energy"] > target.store["energy"]) {
             target = targets[targetNum];
         }
     }
