@@ -4,7 +4,7 @@ function load(creep) {
     }
 
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-        filter: (structure) => (structure.structureType == STRUCTURE_CONTAINER || structure.structureType == STRUCTURE_STORAGE) &&
+        filter: (structure) => (structure.structureType == STRUCTURE_CONTAINER) &&
             (structure.store.energy > creep.carryCapacity)
     });
     if (target != null) {
@@ -17,25 +17,14 @@ function load(creep) {
     }
 }
 
-function build(creep) {
-    var target = creep.pos.findClosestByPath(FIND_MY_CONSTRUCTION_SITES);
-    if (target != null) {
-        if (creep.build(target) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(target, {visualizePathStyle: {stroke: "#ffffff"}});
-        }
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function repairCritical(creep) {
+function transfer(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-        filter: (structure) => structure.structureType == STRUCTURE_RAMPART && structure.hits < 1000
+        filter: (structure) => (structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_EXTENSION) &&
+            (structure.energy < structure.energyCapacity)
     });
 
     if (target != null) {
-        if (creep.repair(target) == ERR_NOT_IN_RANGE) {
+        if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target, {visualizePathStyle: {stroke: "#ffffff"}});
         }
         return true;
@@ -44,13 +33,14 @@ function repairCritical(creep) {
     }
 }
 
-function repair(creep) {
+function transferTower(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-        filter: (structure) => structure.structureType != STRUCTURE_WALL && structure.hits < structure.hitsMax
+        filter: (structure) => structure.structureType == STRUCTURE_TOWER &&
+            (structure.energy < structure.energyCapacity)
     });
 
     if (target != null) {
-        if (creep.repair(target) == ERR_NOT_IN_RANGE) {
+        if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target, {visualizePathStyle: {stroke: "#ffffff"}});
         }
         return true;
@@ -59,13 +49,11 @@ function repair(creep) {
     }
 }
 
-function repairWall(creep) {
-    var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-        filter: (structure) => structure.hits < structure.hitsMax
-    });
+function transferStorage(creep) {
+    var target = creep.room.storage;
 
     if (target != null) {
-        if (creep.repair(target) == ERR_NOT_IN_RANGE) {
+        if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target, {visualizePathStyle: {stroke: "#ffffff"}});
         }
         return true;
@@ -74,7 +62,7 @@ function repairWall(creep) {
     }
 }
 
-var roleBuilder = {
+var roleTransporter = {
     /** @param {Creep} creep **/
     run: function(creep) {
         if (creep.carry.energy == 0) {
@@ -88,29 +76,23 @@ var roleBuilder = {
                 if (load(creep)) {
                     break;
                 }
-            case "repairCritical":
-            case "build":
-            case "repair":
-                creep.memory.state = "repairCritical";
-                if (repairCritical(creep)) {
+            case "transfer":
+            case "transferTower":
+            case "transferStorage":
+                creep.memory.state = "transfer";
+                if (transfer(creep)) {
                     break;
                 }
-                creep.memory.state = "build";
-                if (build(creep)) {
+                creep.memory.state = "transferTower";
+                if (transferTower(creep)) {
                     break;
                 }
-                creep.memory.state = "repair";
-                if (repair(creep)) {
+                creep.memory.state = "transferStorage";
+                if (transferStorage(creep)) {
                     break;
                 }
-                creep.memory.state = "repairWall";
-                if (repairWall(creep)) {
-                    break;
-                }
-                creep.memory.state = "wait";
-                break;
         }
     }
 };
 
-module.exports = roleBuilder;
+module.exports = roleTransporter;

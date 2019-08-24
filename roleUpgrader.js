@@ -3,10 +3,7 @@ function load(creep) {
         return false;
     }
 
-    var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-        filter: (structure) => (structure.structureType == STRUCTURE_CONTAINER || structure.structureType == STRUCTURE_STORAGE) &&
-            (structure.store.energy > creep.carryCapacity)
-    });
+    var target = creep.room.storage;
     if (target != null) {
         if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target, {visualizePathStyle: {stroke: "#ff7711"}});
@@ -19,7 +16,7 @@ function load(creep) {
 
 function upgrade(creep) {
     if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-        creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: "#ffffff"}});
+        creep.moveTo(creep.room.controller, {range: 3, visualizePathStyle: {stroke: "#ffffff"}});
     }
     return true;
 }

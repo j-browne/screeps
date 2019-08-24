@@ -28,7 +28,7 @@ var roleAttacker = {
     run: function(creep) {
         var enemies = creep.room.find(FIND_HOSTILE_CREEPS);
         if (enemies.length > 0) {
-            s
+            attack(creep)
         } else {
             fortify(creep)
         }
@@ -36,3 +36,4 @@ var roleAttacker = {
 };
 
 module.exports = roleAttacker;
+
