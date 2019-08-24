@@ -32,7 +32,7 @@ var spawnController = {
                 }
                 return;
             } else {
-                numRolesCurr[c] -= 1;
+                numRolesCurr[role] -= 1;
             }
         }
     }
