@@ -15,7 +15,7 @@ var config = {
         "transporter": [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
         "attacker": [ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE, MOVE]
     },
-    spawnCreeps: {
+    spawnRoles: {
         "W43N47": ["transporter", "harvester", "harvester", "attacker", "builder", "builder", "transporter", "upgrader", "builder", "upgrader", "builder", "upgrader"]
     },
     names: require("names"),
@@ -48,8 +48,8 @@ module.exports.loop = function () {
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
         creep.room.visual.text(`${creep.name} (${creep.memory.role})`, creep.pos, {font: "10px", stroke: "black", strokeWidth: 0.08});
-        if (creep.memory.role in roles && creep.memory.state != "ignore") {
-            roles[creep.memory.role].run(creep);
+        if (creep.memory.role in config.roles && creep.memory.state != "ignore") {
+            config.roles[creep.memory.role].run(creep);
         }
     }
 

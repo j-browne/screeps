@@ -4,7 +4,7 @@ var spawnController = {
      * @param config
      */
     run: function(room, config) {
-        if (!config.pauseSpawning[room.name]) {
+        if (config.pauseSpawning[room.name]) {
             return;
         }
 
