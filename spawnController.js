@@ -19,7 +19,9 @@ var spawnController = {
             numRolesCurr[role] = room.find(FIND_MY_CREEPS, {filter: (c) => (c.memory.role == role) && (c.ticksToLive > 200)}).length;
         }
 
-        for (role in config.spawnRoles[room.name]) {
+        var spawnRoles = config.spawnRoles[room.name];
+        for (roleNum in spawnRoles) {
+            var role = spawnRoles[roleNum];
             if (!(role in numRolesCurr) || numRolesCurr[role] == 0) {
                 var newNames = _.filter(config.names, (n) => !(n in Game.creeps));
                 var newName = (newNames.length > 0) ? (_.sample(newNames)) : ("Creep" + Game.time);
