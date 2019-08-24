@@ -32,7 +32,7 @@ module.exports.loop = function () {
         }
     }
 
-    for (roomName in Game.rooms) {
+    for (var roomName in Game.rooms) {
         var room = Game.rooms[roomName];
         spawnController.run(room, config);
     }
