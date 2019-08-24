@@ -3,10 +3,10 @@ function load(creep) {
         return false;
     }
 
-    var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-        filter: (structure) => (structure.structureType == STRUCTURE_CONTAINER) &&
-            (structure.store.energy > 200)
-    });
+    var target = _.maxBy(
+        creep.room.find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER}),
+        (t) => t.store["energy"]
+    );
     if (target != null) {
         if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target, {visualizePathStyle: {stroke: "#ff7711"}});
