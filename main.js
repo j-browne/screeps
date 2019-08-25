@@ -17,7 +17,7 @@ var config = {
         "A": [ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE, MOVE]
     },
     spawnRoles: {
-        "W43N47": ["T", "H", "H", "B", "B", "B", "U", "B", "U", "B", "U"]
+        "W43N47": ["T", "H", "H", "B", "B", "B", "U", "U"]
     },
     names: require("names"),
     pauseSpawning: {
