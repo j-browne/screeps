@@ -39,14 +39,6 @@ module.exports.loop = function () {
         towerController.run(room, config);
     }
 
-    for (var r in Game.rooms) {
-        var walls = Game.rooms[r].find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_WALL});
-        for (var i in walls) {
-            var w = walls[i];
-            w.room.visual.text(`${w.hits}`, w.pos, {font: "7px", stroke: "black", strokeWidth: 0.08});
-        }
-    }
-
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
         creep.room.visual.text(`${creep.name} (${creep.memory.role})`, creep.pos, {font: "10px", stroke: "black", strokeWidth: 0.08});
