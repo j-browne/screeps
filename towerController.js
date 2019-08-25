@@ -8,7 +8,7 @@ var spawnController = {
         for (var towerName in towers) {
             var tower = towers[towerName];
 
-            var enemy = tower.findClosestByPath(FIND_HOSTILE_CREEPS,{
+            var enemy = tower.pos.findClosestByPath(FIND_HOSTILE_CREEPS,{
                 filter: (c) => (c.getActiveBodyparts(ATTACK) != 0) || (c.getActiveBodyparts(RANGED_ATTACK) != 0),
                 ignoreCreeps: true
             });
