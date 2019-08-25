@@ -17,7 +17,7 @@ var config = {
         "attacker": [ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE, MOVE]
     },
     spawnRoles: {
-        "W43N47": ["transporter", "harvester", "harvester", "builder", "builder", "builder", "upgrader", "builder", "upgrader"]
+        "W43N47": ["transporter", "harvester", "harvester", "builder", "builder", "builder", "upgrader", "builder", "upgrader", "builder", "upgrader"]
     },
     names: require("names"),
     pauseSpawning: {
