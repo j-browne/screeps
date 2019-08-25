@@ -41,7 +41,8 @@ module.exports.loop = function () {
 
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
-        creep.room.visual.text(`${creep.name} (${creep.memory.role})`, creep.pos, {font: "10px", stroke: "black", strokeWidth: 0.08});
+        creep.room.visual.text(`${creep.name}`, creep.pos.x, creep.pos.y - 0.05, {font: "10px", stroke: "black", strokeWidth: 0.08});
+        creep.room.visual.text(`$(${creep.memory.role})`, creep.pos.x, creep.pos.y + 0.2, {font: "10px", stroke: "black", strokeWidth: 0.08});
         if (creep.memory.role in config.roles && creep.memory.state != "ignore") {
             config.roles[creep.memory.role].run(creep);
         }
