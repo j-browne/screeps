@@ -16,6 +16,14 @@ var spawnController = {
                 tower.attack(enemy);
             }
 
+            var enemy = tower.pos.findClosestByPath(FIND_HOSTILE_CREEPS,{
+                filter: (c) => (c.getActiveBodyparts(HEAL) != 0),
+                ignoreCreeps: true
+            });
+            if (enemy != null) {
+                tower.attack(enemy);
+            }
+
             var creep = _.min(room.find(FIND_MY_CREEPS, {filter: (c) => c.hits < c.hitsMax}), (c) => c.hits);
             if (creep != null) {
                 tower.heal(creep);
