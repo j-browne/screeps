@@ -40,7 +40,7 @@ function transfer(creep) {
 function transferTower(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
         filter: (structure) => structure.structureType == STRUCTURE_TOWER &&
-            (structure.energy < structure.energyCapacity)
+            (structure.energy < structure.energyCapacity / 2)
     });
 
     if (target != null) {
