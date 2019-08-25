@@ -30,7 +30,7 @@ var spawnController = {
             }
 
             if ((enemy == null) && (tower.energy > tower.energyCapacity / 2)) {
-                var structure = _.min(room.find(FIND_STRUCTURES, {filter: (s) => s.hits < s.hitsMax}), (s) => s.hits);
+                var structure = _.min(room.find(FIND_STRUCTURES, {filter: (s) => s.hits < s.hitsMax}), (s) => s.hits / s.hitsMax);
                 tower.repair(structure);
             }
         }

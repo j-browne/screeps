@@ -26,7 +26,16 @@ function build(creep) {
     var target = creep.pos.findClosestByPath(FIND_MY_CONSTRUCTION_SITES);
     if (target != null) {
         if (creep.build(target) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(target, {range:3, visualizePathStyle: {stroke: "#ffffff"}});
+            creep.moveTo(target, {
+                range: 3,
+                visualizePathStyle: {stroke: "#ffffff"},
+                costCallback: function(roomName, costMatrix) {
+                    if(roomName == 'W43N47') {
+                        // Reserve a spot for transporters
+                        costMatrix.set(25, 44, 255);
+                    }
+                }
+            });
         }
         return true;
     } else {
@@ -42,7 +51,16 @@ function repairCritical(creep) {
 
     if (target != null) {
         if (creep.repair(target) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(target, {range:3, visualizePathStyle: {stroke: "#ffffff"}});
+            creep.moveTo(target, {
+                range: 3,
+                visualizePathStyle: {stroke: "#ffffff"},
+                costCallback: function(roomName, costMatrix) {
+                    if(roomName == 'W43N47') {
+                        // Reserve a spot for transporters
+                        costMatrix.set(25, 44, 255);
+                    }
+                }
+            });
         }
         return true;
     } else {
@@ -57,7 +75,16 @@ function repair(creep) {
 
     if (target != null) {
         if (creep.repair(target) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(target, {range:3, visualizePathStyle: {stroke: "#ffffff"}});
+            creep.moveTo(target, {
+                range: 3,
+                visualizePathStyle: {stroke: "#ffffff"},
+                costCallback: function(roomName, costMatrix) {
+                    if(roomName == 'W43N47') {
+                        // Reserve a spot for transporters
+                        costMatrix.set(25, 44, 255);
+                    }
+                }
+            });
         }
         return true;
     } else {
@@ -84,7 +111,16 @@ function repairWall(creep) {
     var target = Game.getObjectById(creep.memory.targetId);
     if (target != null) {
         if (creep.repair(target) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(target, {range: 3, visualizePathStyle: {stroke: "#0000ff"}});
+            creep.moveTo(target, {
+                range: 3,
+                visualizePathStyle: {stroke: "#ffffff"},
+                costCallback: function(roomName, costMatrix) {
+                    if(roomName == 'W43N47') {
+                        // Reserve a spot for transporters
+                        costMatrix.set(25, 44, 255);
+                    }
+                }
+            });
         }
         return true;
     } else {
