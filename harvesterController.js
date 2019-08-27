@@ -7,6 +7,22 @@ var harvesterController = {
         var harvesters = room.find(FIND_MY_CREEPS, {filter: (c) => c.memory.role == "H"});
         var sources = room.find(FIND_SOURCES);
 
+        // This probably isn't the best way to do this, but every 100 ticks, we
+        // recalculate jobs, just in case something got fucked up.
+        // For example, if we manually changed roles without taking care of jobs
+        //
+        // FIXME: Also, if multiple backups are spawned they all go to the
+        // oldest instead of distributing between the available harvesters.
+        // This should be fixed another way, though
+        Memory.controllers.harvesterController.cooldown -= 1;
+        if (Memory.controllers.harvesterController.cooldown == 0) {
+            Memory.controllers.harvesterController.cooldown = 100;
+
+            for (h of harvesters) {
+                delete h.memory.job;
+            }
+        }
+
         if (harvesters.length == 0 || sources.length == 0) {
             return;
         }
