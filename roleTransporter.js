@@ -3,7 +3,7 @@ function load(creep) {
         return false;
     }
 
-    var target = _.max(creep.room.find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER}), (t) = > t.store["energy"]);
+    var target = _.max(creep.room.find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER}), (t) => t.store["energy"]);
 
     if (target != null) {
         if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
