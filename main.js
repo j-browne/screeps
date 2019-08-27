@@ -1,6 +1,7 @@
 var memoryManager = require("memoryManager");
 var visualManager = require("visualManager");
 var spawnController = require("spawnController");
+var harvesterController = require("harvesterController");
 var towerController = require("towerController");
 var config = require("config");
 
@@ -9,6 +10,7 @@ module.exports.loop = function () {
 
     for (room of Object.values(Game.rooms)) {
         spawnController.run(room, config);
+        harvesterController.run(room, config);
         towerController.run(room, config);
     }
 
