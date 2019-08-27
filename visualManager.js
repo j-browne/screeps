@@ -1,6 +1,6 @@
 var visualManager = {
     run: function(config) {
-        for (var room of Game.rooms) {
+        for (var room of Object.values(Game.rooms)) {
             var structs = room.find(FIND_STRUCTURES, {
                 filter: (s) => s.structureType == STRUCTURE_ROAD || s.structureType == STRUCTURE_WALL || s.structureType == STRUCTURE_RAMPART
             });
@@ -32,7 +32,7 @@ var visualManager = {
             }
         }
 
-        for (var creep of Game.creeps) {
+        for (var creep of Object.values(Game.creeps)) {
             creep.room.visual
                 .text(
                 `${creep.name}`,

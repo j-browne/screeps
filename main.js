@@ -7,12 +7,12 @@ var config = require("config");
 module.exports.loop = function () {
     memoryManager.run();
 
-    for (room of Game.rooms) {
+    for (room of Object.values(Game.rooms)) {
         spawnController.run(room, config);
         towerController.run(room, config);
     }
 
-    for (creep of Game.creeps) {
+    for (creep of Object.values(Game.creeps)) {
         if ((creep.memory.role in config.roles) && (creep.memory.state != "ignore")) {
             config.roles[creep.memory.role].run(creep);
         }
