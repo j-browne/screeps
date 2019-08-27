@@ -29,7 +29,7 @@ var visualManager = {
                             opacity:1.0
                         }
                     );
-            });
+            }
         }
 
         for (var creep of Game.creeps) {
