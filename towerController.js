@@ -8,7 +8,7 @@ var towerController = {
         for (var tower of towers) {
             var enemy = tower.pos.findClosestByPath(FIND_HOSTILE_CREEPS,{
                 //filter: (c) => (c.getActiveBodyparts(ATTACK) != 0) || (c.getActiveBodyparts(RANGED_ATTACK) != 0),
-                filter: (c) => (config.userWhitelist.includes(c.owner.username)),
+                filter: (c) => (!config.userWhitelist.includes(c.owner.username)),
                 ignoreCreeps: true
             });
             if (enemy != null) {
