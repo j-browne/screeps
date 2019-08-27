@@ -21,4 +21,4 @@ var memoryManager = {
     }
 };
 
-module.exports = towerController;
+module.exports = memoryManager;
