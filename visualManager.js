@@ -25,7 +25,7 @@ var visualManager = {
                         0.48 * frac,
                         0.08,
                         {
-                            fill: `rgb(${255 * frac}, ${191 * (1 - frac)}, 0)`,
+                            fill: `rgb(${255 * (1 - frac)}, ${191 * frac}, 0)`,
                             opacity:1.0
                         }
                     );
