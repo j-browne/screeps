@@ -70,7 +70,7 @@ function repairCritical(creep) {
 
 function repair(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-        filter: (s) => (s.hits < 1000 || s.structureType != STRUCTURE_WALL) && (s.hits < s.hitsMax / 2) && (s.hits < 1000000)
+        filter: (s) => (s.hits < 1000 || s.structureType != STRUCTURE_WALL) && (s.hits < s.hitsMax / 2) && (s.hits < 100000)
     });
 
     if (target != null) {
