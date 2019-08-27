@@ -20,6 +20,7 @@ var config = {
     pauseSpawning: {
         "W43N47": false
     },
+    visuals: ["creepNames"],
     userWhitelist: ["NEZAJAC"]
 };
 
