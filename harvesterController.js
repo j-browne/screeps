@@ -14,7 +14,7 @@ var harvesterController = {
         // FIXME: Also, if multiple backups are spawned they all go to the
         // oldest instead of distributing between the available harvesters.
         // This should be fixed another way, though
-        Memory.controllers.harvesterController.cooldown -= 1;
+        //Memory.controllers.harvesterController.cooldown -= 1;
         if (Memory.controllers.harvesterController.cooldown == 0) {
             Memory.controllers.harvesterController.cooldown = 100;
 
