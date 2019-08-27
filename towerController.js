@@ -1,21 +1,21 @@
-var spawnController = {
+var towerController = {
     /**
      * @param {Room} room
      * @param config
      */
     run: function(room, config) {
         var towers = room.find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_TOWER});
-        for (var towerName in towers) {
-            var tower = towers[towerName];
-
+        for (var tower of towers) {
             var enemy = tower.pos.findClosestByPath(FIND_HOSTILE_CREEPS,{
-                filter: (c) => (c.getActiveBodyparts(ATTACK) != 0) || (c.getActiveBodyparts(RANGED_ATTACK) != 0),
+                //filter: (c) => (c.getActiveBodyparts(ATTACK) != 0) || (c.getActiveBodyparts(RANGED_ATTACK) != 0),
+                filter: (c) => (config.userWhitelist.includes(c.owner.username)),
                 ignoreCreeps: true
             });
             if (enemy != null) {
                 tower.attack(enemy);
             }
 
+            /*
             var enemy = tower.pos.findClosestByPath(FIND_HOSTILE_CREEPS,{
                 filter: (c) => (c.getActiveBodyparts(HEAL) != 0),
                 ignoreCreeps: true
@@ -33,8 +33,9 @@ var spawnController = {
                 var structure = _.min(room.find(FIND_STRUCTURES, {filter: (s) => s.hits < s.hitsMax && s.structureType != STRUCTURE_WALL}), (s) => s.hits / s.hitsMax);
                 tower.repair(structure);
             }
+            */
         }
     }
 };
 
-module.exports = spawnController;
+module.exports = towerController;

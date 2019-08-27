@@ -8,15 +8,14 @@ function attack(creep) {
 
 function fortify(creep) {
     var structures = creep.pos.lookFor(LOOK_STRUCTURES);
-    for (var s in structures) {
-        if (structures[s].structureType == STRUCTURE_RAMPART) {
+    for (var struct of structures) {
+        if (struct.structureType == STRUCTURE_RAMPART) {
             return;
         }
     }
 
-    var rampart = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {filter: (s) =>
-        s.structureType == STRUCTURE_RAMPART &&
-        s.pos.lookFor(LOOK_CREEPS).length == 0
+    var rampart = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+        filter: (s) => s.structureType == STRUCTURE_RAMPART && s.pos.lookFor(LOOK_CREEPS).length == 0
     });
     if (rampart != null) {
         creep.moveTo(rampart);
