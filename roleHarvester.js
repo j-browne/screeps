@@ -1,7 +1,7 @@
 var roleHarvester = {
     /** @param {Creep} creep **/
     run: function(creep) {
-        if (job in creep.memory) {
+        if ("job" in creep.memory) {
             switch (creep.memory.job.type) {
                 case "harvest":
                     var source = Game.getObjectById(creep.memory.job.sourceId);
