@@ -3,7 +3,7 @@ function load(creep) {
         return false;
     }
 
-    var target = creep.room.storage;
+    let target = creep.room.storage;
     if (target != null) {
         if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target, {
@@ -23,7 +23,7 @@ function load(creep) {
 }
 
 function build(creep) {
-    var target = creep.pos.findClosestByPath(FIND_MY_CONSTRUCTION_SITES);
+    let target = creep.pos.findClosestByPath(FIND_MY_CONSTRUCTION_SITES);
     if (target != null) {
         if (creep.build(target) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target, {
@@ -44,7 +44,7 @@ function build(creep) {
 }
 
 function repairCritical(creep) {
-    var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+    let target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
         filter: (s) => (s.structureType == STRUCTURE_RAMPART && s.hits < 1000) ||
         (s.structureType != STRUCTURE_WALL && s.structureType != STRUCTURE_RAMPART && s.hits < s.hitsMax / 10)
     });
@@ -69,7 +69,7 @@ function repairCritical(creep) {
 }
 
 function repair(creep) {
-    var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+    let target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
         filter: (s) => (s.hits < 1000 || s.structureType != STRUCTURE_WALL) && (s.hits < s.hitsMax / 2) && (s.hits < 100000)
     });
 
@@ -97,18 +97,18 @@ function repairWall(creep) {
     if (!("cooldown" in creep.memory) || creep.memory.cooldown <= 0 || !("targetId" in creep.memory)) {
         creep.memory.cooldown = 100;
 
-        var targets = creep.room.find(FIND_STRUCTURES, {
+        let targets = creep.room.find(FIND_STRUCTURES, {
             filter: (structure) => structure.hits < structure.hitsMax
         });
         if (targets.length == 0) {
             return false;
         }
 
-        var target = _.sample(_.take(_.sortBy(targets, (t) => t.hits/t.hitsMax), 5));
+        let target = _.sample(_.take(_.sortBy(targets, (t) => t.hits/t.hitsMax), 5));
         creep.memory.targetId = target.id;
     }
 
-    var target = Game.getObjectById(creep.memory.targetId);
+    let target = Game.getObjectById(creep.memory.targetId);
     if (target != null) {
         if (creep.repair(target) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target, {

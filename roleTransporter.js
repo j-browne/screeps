@@ -3,7 +3,7 @@ function load(creep) {
         return false;
     }
 
-    var target = _.max(creep.room.find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER}), (t) => t.store["energy"]);
+    let target = _.max(creep.room.find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER}), (t) => t.store["energy"]);
 
     if (target != null) {
         if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -16,7 +16,7 @@ function load(creep) {
 }
 
 function transfer(creep) {
-    var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+    let target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
         filter: (structure) => (structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_EXTENSION) &&
             (structure.energy < structure.energyCapacity)
     });
@@ -32,7 +32,7 @@ function transfer(creep) {
 }
 
 function transferTower(creep) {
-    var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+    let target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
         filter: (structure) => structure.structureType == STRUCTURE_TOWER &&
             ((structure.energy <= structure.energyCapacity / 2) ||
             (structure.energy <= (structure.energyCapacity - creep.carryCapacity)))
@@ -49,7 +49,7 @@ function transferTower(creep) {
 }
 
 function transferStorage(creep) {
-    var target = creep.room.storage;
+    let target = creep.room.storage;
 
     if (target != null) {
         if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {

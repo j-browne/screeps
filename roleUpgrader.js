@@ -3,7 +3,7 @@ function load(creep) {
         return false;
     }
 
-    var target = creep.room.storage;
+    let target = creep.room.storage;
     if (target != null) {
         if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target, {

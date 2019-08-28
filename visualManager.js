@@ -1,12 +1,12 @@
 var visualManager = {
     run: function(config) {
         if (config.visuals.includes("hitBars")) {
-            for (var room of Object.values(Game.rooms)) {
-                var structs = room.find(FIND_STRUCTURES, {
+            for (let room of Object.values(Game.rooms)) {
+                let structs = room.find(FIND_STRUCTURES, {
                     filter: (s) => s.structureType == STRUCTURE_ROAD || s.structureType == STRUCTURE_WALL || s.structureType == STRUCTURE_RAMPART
                 });
-                for (var struct of structs) {
-                    var frac = struct.hits / struct.hitsMax;
+                for (let struct of structs) {
+                    let frac = struct.hits / struct.hitsMax;
                     room.visual
                         .rect(
                             struct.pos.x - 0.25,
@@ -35,7 +35,7 @@ var visualManager = {
         }
 
         if (config.visuals.includes("creepNames")) {
-            for (var creep of Object.values(Game.creeps)) {
+            for (let creep of Object.values(Game.creeps)) {
                 creep.room.visual
                     .text(
                         `${creep.name}`,

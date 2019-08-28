@@ -4,8 +4,8 @@ var harvesterController = {
      * @param config
      */
     run: function(room, config) {
-        var harvesters = room.find(FIND_MY_CREEPS, {filter: (c) => c.memory.role == "H"});
-        var sources = room.find(FIND_SOURCES);
+        let harvesters = room.find(FIND_MY_CREEPS, {filter: (c) => c.memory.role == "H"});
+        let sources = room.find(FIND_SOURCES);
 
         // This probably isn't the best way to do this, but every 100 ticks, we
         // recalculate jobs, just in case something got fucked up.
@@ -18,7 +18,7 @@ var harvesterController = {
         if (Memory.controllers.harvesterController.cooldown == 0) {
             Memory.controllers.harvesterController.cooldown = 100;
 
-            for (h of harvesters) {
+            for (let h of harvesters) {
                 delete h.memory.job;
             }
         }
@@ -27,9 +27,9 @@ var harvesterController = {
             return;
         }
 
-        var [harvestersWorking, harvestersNotWorking] = _.partition(harvesters, (h) => "job" in h.memory);
-        var sourcesWorked = _.map(harvestersWorking, (h) => Game.getObjectById(h.memory.job.sourceId));
-        var sourcesNotWorked = _.difference(sources, sourcesWorked);
+        let [harvestersWorking, harvestersNotWorking] = _.partition(harvesters, (h) => "job" in h.memory);
+        let sourcesWorked = _.map(harvestersWorking, (h) => Game.getObjectById(h.memory.job.sourceId));
+        let sourcesNotWorked = _.difference(sources, sourcesWorked);
 
         // Iterate until we run out of sources or non-working harvesters. If
         // there are still harvesters left over, they'll be handled in the next
@@ -37,7 +37,7 @@ var harvesterController = {
         while (sourcesNotWorked.length > 0 && harvestersNotWorking.length > 0) {
             let h = harvestersNotWorking.pop();
             harvestersWorking.push(h);
-            var closestSource = h.pos.findClosestByPath(sourcesNotWorked);
+            let closestSource = h.pos.findClosestByPath(sourcesNotWorked, {ignoreCreeps: true});
             sourcesWorked.push(closestSource);
             _.remove(sourcesNotWorked, (s) => s === closestSource);
             h.memory.job = {
@@ -49,8 +49,8 @@ var harvesterController = {
         // Replace the oldest harvesters first (negative sign is so that they
         // are at the end of the array)
         harvestersWorking = _.sortBy(harvestersWorking, (h) => -h.ticksToLive);
-        for (h of harvestersNotWorking) {
-            var oldHarvester = harvestersWorking.pop();
+        for (let h of harvestersNotWorking) {
+            let oldHarvester = harvestersWorking.pop();
 
             // If oldHarvester is undefined, that is because there are more
             // non-working harvesters than working harvesters. This means that

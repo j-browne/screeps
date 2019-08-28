@@ -8,24 +8,24 @@ var spawnController = {
             return;
         }
 
-        var spawns = room.find(FIND_MY_SPAWNS);
+        let spawns = room.find(FIND_MY_SPAWNS);
         if (spawns.length == 0) {
             return;
         }
-        var spawn = spawns[0];
+        let spawn = spawns[0];
 
-        var numRolesCurr = _.mapValues(
+        let numRolesCurr = _.mapValues(
             config.roles,
             (_, role) => room.find(FIND_MY_CREEPS, {filter: (c) => (c.memory.role == role) && (c.ticksToLive > 150)}).length
         );
 
-        var spawnRoles = config.spawnRoles[room.name];
-        for (var role of spawnRoles) {
+        let spawnRoles = config.spawnRoles[room.name];
+        for (let role of spawnRoles) {
             if (!(role in numRolesCurr) || numRolesCurr[role] == 0) {
-                var newNames = _.filter(config.names, (n) => !(n in Game.creeps));
-                var newName = (newNames.length > 0) ? (_.sample(newNames)) : ("Creep" + Game.time);
+                let newNames = _.filter(config.names, (n) => !(n in Game.creeps));
+                let newName = (newNames.length > 0) ? (_.sample(newNames)) : ("Creep" + Game.time);
 
-                var spawnStatus = spawn.spawnCreep(config.equips[role], newName, {memory: {role: role}});
+                let spawnStatus = spawn.spawnCreep(config.equips[role], newName, {memory: {role: role}});
                 if (spawnStatus == OK) {
                     console.log(`Spawning: ${newName} (${role})`);
                 }
