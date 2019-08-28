@@ -14,7 +14,7 @@ var harvesterController = {
         // FIXME: Also, if multiple backups are spawned they all go to the
         // oldest instead of distributing between the available harvesters.
         // This should be fixed another way, though
-        //Memory.controllers.harvesterController.cooldown -= 1;
+        Memory.controllers.harvesterController.cooldown -= 1;
         if (Memory.controllers.harvesterController.cooldown == 0) {
             Memory.controllers.harvesterController.cooldown = 100;
 
@@ -34,8 +34,8 @@ var harvesterController = {
         // Iterate until we run out of sources or non-working harvesters. If
         // there are still harvesters left over, they'll be handled in the next
         // loop
-        for (var i = 0; i < Math.min(sourcesNotWorked.length, harvestersNotWorking.length); i++) {
-            var h = harvestersNotWorking.pop();
+        while (sourcesNotWorked.length > 0 && harvestersNotWorking.length > 0) {
+            let h = harvestersNotWorking.pop();
             harvestersWorking.push(h);
             var closestSource = h.pos.findClosestByPath(sourcesNotWorked);
             sourcesWorked.push(closestSource);
