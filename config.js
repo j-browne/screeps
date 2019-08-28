@@ -8,13 +8,13 @@ var config = {
     },
     equips: {
         "H": [WORK, WORK, WORK, WORK, WORK, MOVE, MOVE, MOVE],
-        "U": [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
+        "U": [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE],
         "B": [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
         "T": [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE],
         "A": [ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE, MOVE]
     },
     spawnRoles: {
-        "W43N47": ["T", "H", "H", "B", "B", "B", "U", "U"]
+        "W43N47": ["T", "H", "H", "B", "B", "U", "U", "U"]
     },
     names: require("names"),
     pauseSpawning: {
